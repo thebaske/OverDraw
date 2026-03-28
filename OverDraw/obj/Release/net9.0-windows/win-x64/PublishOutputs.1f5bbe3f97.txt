@@ -1,0 +1,7 @@
+F:\_PROJECTS\OverDraw\publish\OverDraw.pdb
+F:\_PROJECTS\OverDraw\publish\D3DCompiler_47_cor3.dll
+F:\_PROJECTS\OverDraw\publish\PenImc_cor3.dll
+F:\_PROJECTS\OverDraw\publish\PresentationNative_cor3.dll
+F:\_PROJECTS\OverDraw\publish\vcruntime140_cor3.dll
+F:\_PROJECTS\OverDraw\publish\wpfgfx_cor3.dll
+F:\_PROJECTS\OverDraw\publish\OverDraw.exe

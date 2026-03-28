@@ -1,0 +1,67 @@
+<Window x:Class="OverDraw.StampEditorWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Edit Stamp"
+        Width="340" Height="420"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        ShowInTaskbar="True"
+        Topmost="True"
+        Background="#FF2D2D30">
+    <Window.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#FFCCCCCC"/>
+            <Setter Property="FontSize" Value="13"/>
+        </Style>
+    </Window.Resources>
+    <Grid Margin="12">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="8"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" x:Name="TitleLabel" Text="Stamp 1 (Ctrl+1)" FontSize="14" FontWeight="SemiBold"/>
+
+        <!-- Drawing canvas -->
+        <Border Grid.Row="2" BorderBrush="#55FFFFFF" BorderThickness="1" CornerRadius="4"
+                Background="#FF1E1E1E" ClipToBounds="True">
+            <Canvas x:Name="DrawCanvas"
+                    MouseLeftButtonDown="OnCanvasMouseDown"
+                    MouseMove="OnCanvasMouseMove"
+                    MouseLeftButtonUp="OnCanvasMouseUp"
+                    Background="Transparent"/>
+        </Border>
+
+        <!-- Color + thickness -->
+        <StackPanel Grid.Row="4" Orientation="Horizontal">
+            <Border x:Name="StampColorSwatch" Width="28" Height="28" CornerRadius="4"
+                    BorderBrush="#55FFFFFF" BorderThickness="1" Margin="0,0,10,0"
+                    Cursor="Hand" MouseLeftButtonUp="OnStampColorClick"/>
+            <TextBlock Text="Size:" VerticalAlignment="Center" Margin="0,0,6,0"/>
+            <Slider x:Name="StampThicknessSlider" Width="120" Minimum="1" Maximum="16"
+                    Value="3" TickFrequency="1" IsSnapToTickEnabled="True"
+                    VerticalAlignment="Center"/>
+        </StackPanel>
+
+        <!-- Buttons -->
+        <StackPanel Grid.Row="6" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Content="Clear" Width="70" Height="28" Margin="0,0,8,0"
+                    Click="OnClearClick"
+                    Background="#FF555555" Foreground="White" BorderThickness="0"
+                    FontSize="13" Cursor="Hand"/>
+            <Button Content="Save" Width="70" Height="28" Margin="0,0,8,0"
+                    Click="OnSaveClick"
+                    Background="#FF007ACC" Foreground="White" BorderThickness="0"
+                    FontSize="13" Cursor="Hand"/>
+            <Button Content="Cancel" Width="70" Height="28"
+                    Click="OnCancelClick"
+                    Background="#FF555555" Foreground="White" BorderThickness="0"
+                    FontSize="13" Cursor="Hand"/>
+        </StackPanel>
+    </Grid>
+</Window>
