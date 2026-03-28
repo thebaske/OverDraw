@@ -14,7 +14,7 @@ A lightweight screen overlay drawing tool for Windows. Hold a modifier key and d
 - **Multi-monitor** — overlay spans the entire virtual desktop
 
 ## Download
-
+![Scrnshot](image.png)
 Grab the latest `OverDraw.exe` from the [Releases](../../releases) page.
 
 > **Note:** The portable release is fully self-contained (~68 MB) and requires no dependencies. Just download and run.
