@@ -54,8 +54,6 @@ public class FadingStamp
     {
         if (IsExpired || Stamp.IsEmpty) return;
 
-        var scaleX = Scale / Stamp.CanvasWidth;
-        var scaleY = Scale / Stamp.CanvasHeight;
         // Render size = canvas size * Scale, centered on Center
         var renderW = Stamp.CanvasWidth * Scale;
         var renderH = Stamp.CanvasHeight * Scale;
@@ -82,13 +80,13 @@ public class FadingStamp
             using (var ctx = geometry.Open())
             {
                 var first = strokeData.Points[0];
-                ctx.BeginFigure(new WpfPoint(originX + first[0] * scaleX * Stamp.CanvasWidth,
-                                              originY + first[1] * scaleY * Stamp.CanvasHeight), false, false);
+                ctx.BeginFigure(new WpfPoint(originX + first[0] * renderW,
+                                              originY + first[1] * renderH), false, false);
                 for (int i = 1; i < strokeData.Points.Count; i++)
                 {
                     var p = strokeData.Points[i];
-                    ctx.LineTo(new WpfPoint(originX + p[0] * scaleX * Stamp.CanvasWidth,
-                                             originY + p[1] * scaleY * Stamp.CanvasHeight), true, true);
+                    ctx.LineTo(new WpfPoint(originX + p[0] * renderW,
+                                             originY + p[1] * renderH), true, true);
                 }
             }
             geometry.Freeze();
