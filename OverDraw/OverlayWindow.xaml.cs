@@ -104,11 +104,10 @@ public partial class OverlayWindow : Window
             var hookStruct = System.Runtime.InteropServices.Marshal.PtrToStructure<NativeMethods.KBDLLHOOKSTRUCT>(lParam);
             int vk = (int)hookStruct.vkCode;
 
-            // Check for Ctrl+1..0 (modifier must be Ctrl for stamps)
+            // Check for modifier+1..0 (uses same modifier as drawing)
             if (vk >= NativeMethods.VK_0 && vk <= NativeMethods.VK_0 + 9)
             {
-                bool ctrlHeld = (NativeMethods.GetAsyncKeyState(NativeMethods.VK_CONTROL) & 0x8000) != 0;
-                if (ctrlHeld)
+                if (IsModifierHeld())
                 {
                     // VK_1=0x31 -> index 0, VK_2 -> index 1, ..., VK_0=0x30 -> index 9
                     int slotIndex = vk == NativeMethods.VK_0 ? 9 : vk - NativeMethods.VK_1;

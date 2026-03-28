@@ -40,6 +40,7 @@ public partial class SettingsWindow : Window
     {
         StampSlotsPanel.Children.Clear();
         _settings.EnsureStampSlots();
+        StampsHeader.Text = $"Stamps ({_settings.ModifierKey} + 1-0)";
 
         for (int i = 0; i < 10; i++)
         {
@@ -57,7 +58,7 @@ public partial class SettingsWindow : Window
                 BorderThickness = new Thickness(1),
                 Background = new SolidColorBrush((WpfColor)WpfColorConverter.ConvertFromString("#FF1E1E1E")),
                 Cursor = System.Windows.Input.Cursors.Hand,
-                ToolTip = $"Ctrl+{label} — Click to edit"
+                ToolTip = $"{_settings.ModifierKey}+{label} — Click to edit"
             };
 
             var grid = new Grid();
@@ -151,18 +152,19 @@ public partial class SettingsWindow : Window
 
     private void OnColorSwatchClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
     {
-        string[] presets = ["#FFFF0000", "#FF00FF00", "#FF0000FF", "#FFFFFF00",
-                            "#FFFF00FF", "#FF00FFFF", "#FFFFFFFF", "#FFFF6600"];
-        var current = _settings.PenColorHex.ToUpperInvariant();
-        var idx = Array.IndexOf(presets, current);
-        var next = presets[(idx + 1) % presets.Length];
+        var picker = new ColorPickerWindow(_settings.GetPenColor(), _settings.RecentColors);
+        picker.ShowDialog();
 
-        _suppressEvents = true;
-        ColorHexBox.Text = next;
-        _settings.PenColorHex = next;
-        UpdateColorSwatch();
-        _suppressEvents = false;
-        Apply();
+        if (picker.Confirmed)
+        {
+            var hex = picker.SelectedColor.ToString();
+            _suppressEvents = true;
+            ColorHexBox.Text = hex;
+            _settings.PenColorHex = hex;
+            UpdateColorSwatch();
+            _suppressEvents = false;
+            Apply();
+        }
     }
 
     private void OnThicknessChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
@@ -191,6 +193,7 @@ public partial class SettingsWindow : Window
             _ => "Ctrl"
         };
         Apply();
+        BuildStampSlots();
     }
 
     private void Apply()

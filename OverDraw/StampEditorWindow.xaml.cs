@@ -15,10 +15,7 @@ public partial class StampEditorWindow : Window
     private Polyline? _currentPolyline;
     private string _currentColorHex = "#FFFFFFFF";
 
-    private static readonly string[] ColorPresets =
-        ["#FFFFFFFF", "#FFFF0000", "#FF00FF00", "#FF0000FF",
-         "#FFFFFF00", "#FFFF00FF", "#FF00FFFF", "#FFFF6600"];
-    private int _colorIndex;
+    private static readonly List<string> _stampRecentColors = new();
 
     public StampEditorWindow(int slotIndex, StampData? existing, Action<int, StampData> onSave)
     {
@@ -79,9 +76,18 @@ public partial class StampEditorWindow : Window
 
     private void OnStampColorClick(object sender, MouseButtonEventArgs e)
     {
-        _colorIndex = (_colorIndex + 1) % ColorPresets.Length;
-        _currentColorHex = ColorPresets[_colorIndex];
-        UpdateSwatchColor();
+        WpfColor current;
+        try { current = (WpfColor)WpfColorConverter.ConvertFromString(_currentColorHex); }
+        catch { current = Colors.White; }
+
+        var picker = new ColorPickerWindow(current, _stampRecentColors);
+        picker.ShowDialog();
+
+        if (picker.Confirmed)
+        {
+            _currentColorHex = picker.SelectedColor.ToString();
+            UpdateSwatchColor();
+        }
     }
 
     private void OnCanvasMouseDown(object sender, MouseButtonEventArgs e)

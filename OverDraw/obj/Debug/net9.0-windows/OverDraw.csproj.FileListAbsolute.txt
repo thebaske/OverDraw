@@ -22,3 +22,5 @@ F:\_PROJECTS\OverDraw\OverDraw\obj\Debug\net9.0-windows\OverDraw.genruntimeconfi
 F:\_PROJECTS\OverDraw\OverDraw\obj\Debug\net9.0-windows\ref\OverDraw.dll
 F:\_PROJECTS\OverDraw\OverDraw\obj\Debug\net9.0-windows\StampEditorWindow.baml
 F:\_PROJECTS\OverDraw\OverDraw\obj\Debug\net9.0-windows\StampEditorWindow.g.cs
+F:\_PROJECTS\OverDraw\OverDraw\obj\Debug\net9.0-windows\ColorPickerWindow.baml
+F:\_PROJECTS\OverDraw\OverDraw\obj\Debug\net9.0-windows\ColorPickerWindow.g.cs

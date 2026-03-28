@@ -11,6 +11,7 @@ public class AppSettings
     public double FadeDurationSeconds { get; set; } = 2.0;
     public string ModifierKey { get; set; } = "Ctrl"; // Ctrl, Shift, Alt
     public List<StampData?> Stamps { get; set; } = new(new StampData?[10]);
+    public List<string> RecentColors { get; set; } = new();
 
     private static readonly string SettingsPath = Path.Combine(
         AppDomain.CurrentDomain.BaseDirectory, "overdraw-settings.json");

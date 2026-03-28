@@ -487,3 +487,5 @@ F:\_PROJECTS\OverDraw\OverDraw\bin\Release\net9.0-windows\win-x64\zh-Hant\Window
 F:\_PROJECTS\OverDraw\OverDraw\obj\Release\net9.0-windows\win-x64\OverDraw.csproj.Up2Date
 F:\_PROJECTS\OverDraw\OverDraw\obj\Release\net9.0-windows\win-x64\StampEditorWindow.baml
 F:\_PROJECTS\OverDraw\OverDraw\obj\Release\net9.0-windows\win-x64\StampEditorWindow.g.cs
+F:\_PROJECTS\OverDraw\OverDraw\obj\Release\net9.0-windows\win-x64\ColorPickerWindow.baml
+F:\_PROJECTS\OverDraw\OverDraw\obj\Release\net9.0-windows\win-x64\ColorPickerWindow.g.cs
